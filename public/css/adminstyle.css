@@ -1,0 +1,9 @@
+.trying{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+table.alignmiddle td{
+  vertical-align: middle !important;
+}

@@ -1,0 +1,34 @@
+<%- include('../partials/adminheader.ejs'); -%>
+<h2 class="page-title">Edit a workshop</h2>
+<a href="/admin/workshops" class="btn btn-primary">Back to all workshops</a>
+<br><br>
+
+<form method="POST" action="/admin/workshops/edit-workshop/<%= id %>">
+  <div class="form-group">
+    <label for="">Workshop Name</label>
+    <input type="text" class="form-control" name="workshopName" value="<%=workshopName%>" placeholder="Workshop Name">
+  </div>
+
+  <div class="form-group">
+    <label for="">Contact No.</label>
+    <input type="text" class="form-control" name="contact" value="<%=contact%>" placeholder="Workshop Contact Number">
+  </div>
+
+  <div class="form-group">
+    <label for="">Latitude</label>
+    <input type="text" class="form-control" name="lat" value="<%=lat%>" placeholder="Workshop Location Latitude">
+  </div>
+
+  <div class="form-group">
+    <label for="">Longitude</label>
+    <input type="text" class="form-control" name="long" value="<%=long%>" placeholder="Workshop Location Longitude">
+  </div>
+
+
+
+  <input type="submit">
+
+
+</form>
+
+<%- include('../partials/adminfooter.ejs'); -%>

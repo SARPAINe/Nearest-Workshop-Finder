@@ -1,0 +1,40 @@
+<%- include('../partials/adminheader.ejs'); -%>
+<h2 class="page-title">Workshops</h2>
+<a href="/admin/workshops/add-workshop" class="btn btn-primary">Add a new workshop</a>
+
+<br><br>
+
+<% if(count>0){%>
+
+<table class="table table-striped alignmiddle">
+  <thead>
+    <tr class="home">
+      <th>Workshop Name</th>
+      <th>Contact</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% workshops.forEach(workshop => {%>
+    <tr>
+      <td><%= workshop.workshopName %> </td>
+      <td><%= workshop.contact %> </td>
+      <td><%=parseFloat(workshop.lat).toFixed(6)%></td>
+      <td><%=parseFloat(workshop.long).toFixed(6)%></td>
+
+      <td><a href="/admin/workshops/edit-workshop/<%= workshop._id%>">Edit</a></td>
+
+      <td><a class="confrimDeletion" onclick="return confirm('Are you sure you want to Delete?');"
+          href="/admin/workshops/delete-workshop/<%= workshop._id%>">Delete</a></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<% }else{ %>
+<h3 class="text-center">There are no Workshops.</h3>
+<% } %>
+
+<%- include('../partials/adminfooter.ejs'); -%>
