@@ -3,7 +3,7 @@ const router=express.Router();
 const Workshop=require('../models/workshop');
 
 router.get('/',(req,res)=>{
-  console.log(req.isAuthenticated());
+  console.log(req.user.username);
   if(req.isAuthenticated())
   {
     res.render('index',{
