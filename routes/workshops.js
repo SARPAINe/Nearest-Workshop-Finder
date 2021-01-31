@@ -1,14 +1,14 @@
 const express=require('express');
 const router=express.Router();
-
-const Workshop=require('../models/workshop.js');
 const {body,validationResult}=require('express-validator');
 
-
-
+const Workshop=require('../models/workshop');
+var auth=require('../config/auth');
+var isUser=auth.isUser;
+var isAdmin=auth.isAdmin;
 
 ///get all workshop
-router.get('/',async (req,res)=>{
+router.get('/',isAdmin,async (req,res)=>{
   let count;
   count = await Workshop.countDocuments((err,c)=>{
     count=c;
@@ -24,7 +24,7 @@ router.get('/',async (req,res)=>{
 });
 
 //get add workshop
-router.get('/add-workshop',(req,res)=>{
+router.get('/add-workshop',isAdmin,(req,res)=>{
   let workshopName="";
   let contact="";
   let lat="";
@@ -82,7 +82,7 @@ router.post('/add-workshop',[
 })
 
 //get edit workshop
-router.get('/edit-workshop/:id',async (req,res,next)=>{
+router.get('/edit-workshop/:id',isAdmin,async (req,res,next)=>{
   let workshop;
   try{
     workshop=await Workshop.findById(req.params.id);
@@ -145,7 +145,7 @@ router.post('/edit-workshop/:id',[
   }
 });
 // get delete workshop
-router.get('/delete-workshop/:id',(req,res,next)=>{
+router.get('/delete-workshop/:id',isAdmin,(req,res,next)=>{
   console.log(req.params.id);
   let id=req.params.id;
   Workshop.findByIdAndRemove(id,err=>{
