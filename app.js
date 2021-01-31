@@ -39,8 +39,8 @@ const MongoStore = require('connect-mongo')(session);
 
 //express session middleware
 app.use(session({
-  secret:'Hello loosers!', 
-  resave:true,
+  secret:process.env.secret, 
+  resave:false,
   saveUninitialized:true,
   store:new MongoStore({mongooseConnection:mongoose.connection})
 }))
